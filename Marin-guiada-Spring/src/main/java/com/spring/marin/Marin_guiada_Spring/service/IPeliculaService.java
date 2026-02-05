@@ -12,7 +12,7 @@ import java.util.Optional;
  *
  * @author Alberto Marín Fernández
  */
-public interface IClienteService {
+public interface IPeliculaService {
 
     Iterable<Peliculas> obtenerTodas();
 
