@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Alberto Marín Fernández
  */
-public interface IBibliotecaRepository extends JpaRepository<Prestamos, String> {
+public interface IBibliotecaRepository extends JpaRepository<Prestamos, Integer> {
 
     /**
      * Busca todos los préstamos asociados a un usuario específico mediante su DNI.
