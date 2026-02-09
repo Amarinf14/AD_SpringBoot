@@ -29,7 +29,12 @@ public class BibliotecaController {
      */
     @GetMapping
     private ResponseEntity<List<Prestamos>> findAll() {
-        return new ResponseEntity<>(bibliotecaService.findAll(), HttpStatus.OK);
+        List<Prestamos> lista = bibliotecaService.findAll();
+        // Si la lista está vacía, devolvmos un HTTP 204 No Content
+        if (lista.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(lista); // 200 Ok
     }
 
     /**
@@ -40,7 +45,11 @@ public class BibliotecaController {
      */
     @GetMapping("/dni/{dni}")
     private ResponseEntity<List<Prestamos>> buscarPorDNI(@PathVariable String dni) {
-        return new ResponseEntity<>(bibliotecaService.buscarPorDNI(dni), HttpStatus.OK);
+        List<Prestamos> resultados = bibliotecaService.buscarPorDNI(dni);
+        if (resultados.isEmpty()) {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+        return ResponseEntity.ok(resultados);
     }
 
     /**
@@ -51,7 +60,11 @@ public class BibliotecaController {
      */
     @GetMapping("/isbn/{isbn}")
     private ResponseEntity<List<Prestamos>> buscarPorISBN(@PathVariable String isbn) {
-        return new ResponseEntity<>(bibliotecaService.buscarPorISBN(isbn), HttpStatus.OK);
+        List<Prestamos> resultados = bibliotecaService.buscarPorISBN(isbn);
+        if (resultados.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(resultados);
     }
 
     /**
@@ -62,7 +75,14 @@ public class BibliotecaController {
      */
     @PostMapping
     public ResponseEntity<Prestamos> registrarPrestamo(@RequestBody Prestamos prestamo) {
-        return new ResponseEntity<>(bibliotecaService.registrarPrestamo(prestamo), HttpStatus.CREATED);
+        try {
+            Prestamos nuevo = bibliotecaService.registrarPrestamo(prestamo);
+            // 201 Created es el estándar tras un POST exitoso
+            return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
+        } catch (Exception e) {
+            // 400 Bad Request si los datos enviados no son válidos
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     /**
@@ -73,7 +93,12 @@ public class BibliotecaController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPrestamo(@PathVariable Integer id) {
-        bibliotecaService.eliminarPrestamo(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            bibliotecaService.eliminarPrestamo(id);
+            // 204 No Content es el estándar para DELETE cuando no devuelves cuerpo
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
