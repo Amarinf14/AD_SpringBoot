@@ -13,7 +13,6 @@ import java.time.LocalDate;
 public class Prestamos {
     @Id
     @Column(name = "DNI_Usuario")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Valor ID se genera automáticamente
     private String dniUsuario;
 
     @Id
@@ -29,44 +28,4 @@ public class Prestamos {
 
     @Column(name = "ISBN")
     private String isbn;
-
-    public String getDniUsuario() {
-        return this.dniUsuario;
-    }
-
-    public void setDniUsuario(String dniUsuario) {
-        this.dniUsuario = dniUsuario;
-    }
-
-    public String getTituloLibro() {
-        return this.tituloLibro;
-    }
-
-    public void setTituloLibro(String tituloLibro) {
-        this.tituloLibro = tituloLibro;
-    }
-
-    public LocalDate getFechaPrestamo() {
-        return this.fechaPrestamo;
-    }
-
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
-    }
-
-    public LocalDate getFechaDevolucion() {
-        return this.fechaDevolucion;
-    }
-
-    public void setFechaDevolucion(LocalDate fechaDevolucion) {
-        this.fechaDevolucion = fechaDevolucion;
-    }
-
-    public String getIsbn() {
-        return this.isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 }
