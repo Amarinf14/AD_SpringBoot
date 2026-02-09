@@ -1,6 +1,7 @@
 package com.alberto.tareaspring.repository;
 
 import com.alberto.tareaspring.model.Prestamos;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Alberto Marín Fernández
  */
-public interface IBibliotecaRepository {
+public interface IBibliotecaRepository extends JpaRepository<Prestamos, String> {
 
     /**
      * Busca todos los préstamos asociados a un usuario específico mediante su DNI.
