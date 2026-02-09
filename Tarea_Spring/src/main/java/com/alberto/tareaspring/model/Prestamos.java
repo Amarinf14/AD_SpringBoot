@@ -12,20 +12,18 @@ import java.time.LocalDate;
 @Getter @Setter @ToString
 public class Prestamos {
     @Id
-    @Column(name = "DNI_Usuario")
+    @Column(name = "IDPrestamo")
+    private Integer idPrestamo;
+
+    @Column(name = "DNIUsuario")
     private String dniUsuario;
 
-    @Id
-    @Column(name = "TituloLibro")
-    private String tituloLibro;
+    @Column(name = "ISBNLibro")
+    private String isbnLibro;
 
-    @Id
     @Column(name = "FechaPrestamo")
     private LocalDate fechaPrestamo;
 
     @Column(name = "FechaDevolucion")
     private LocalDate fechaDevolucion;
-
-    @Column(name = "ISBN")
-    private String isbn;
 }
