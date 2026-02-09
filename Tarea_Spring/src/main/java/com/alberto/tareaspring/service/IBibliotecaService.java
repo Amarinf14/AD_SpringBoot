@@ -17,6 +17,13 @@ import java.util.List;
 public interface IBibliotecaService {
 
     /**
+     * Busca todos los préstamos registrados en el sistema.
+     *
+     * @return lista de todos los préstamos
+     */
+    List<Prestamos> findAll();
+
+    /**
      * Busca todos los préstamos asociados a un usuario específico mediante su DNI.
      *
      * @param dni el DNI del usuario

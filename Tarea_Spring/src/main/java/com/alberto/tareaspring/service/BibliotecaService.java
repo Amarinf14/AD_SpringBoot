@@ -22,6 +22,16 @@ public class BibliotecaService implements IBibliotecaService {
     private IBibliotecaRepository bibliotecaRepository;
 
     /**
+     * Busca todos los préstamos registrados en el sistema.
+     *
+     * @return lista de todos los préstamos
+     */
+    @Override
+    public List<Prestamos> findAll() {
+        return  bibliotecaRepository.findAll();
+    }
+
+    /**
      * Busca todos los préstamos asociados a un usuario específico mediante su DNI.
      *
      * @param dni el DNI del usuario

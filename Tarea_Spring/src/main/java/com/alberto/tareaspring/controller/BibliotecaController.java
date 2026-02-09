@@ -16,11 +16,21 @@ import java.util.List;
  * @author Alberto Marín Fernández
  */
 @RestController
-@RequestMapping("/biblioteca")
+@RequestMapping("/api/prestamos")
 public class BibliotecaController {
 
     @Autowired
     private BibliotecaService bibliotecaService;
+
+    /**
+     * Obtiene todos los préstamos registrados en el sistema.
+     *
+     * @return lista de todos los préstamos
+     */
+    @GetMapping
+    private ResponseEntity<List<Prestamos>> findAll() {
+        return new ResponseEntity<>(bibliotecaService.findAll(), HttpStatus.OK);
+    }
 
     /**
      * Busca préstamos por DNI del usuario.
@@ -29,7 +39,7 @@ public class BibliotecaController {
      * @return lista de préstamos del usuario
      */
     @GetMapping("/dni/{dni}")
-    private ResponseEntity<List<Prestamos>> buscarPorDNI(String dni) {
+    private ResponseEntity<List<Prestamos>> buscarPorDNI(@PathVariable String dni) {
         return new ResponseEntity<>(bibliotecaService.buscarPorDNI(dni), HttpStatus.OK);
     }
 
@@ -40,7 +50,7 @@ public class BibliotecaController {
      * @return lista de préstamos del libro
      */
     @GetMapping("/isbn/{isbn}")
-    private ResponseEntity<List<Prestamos>> buscarPorISBN(String isbn) {
+    private ResponseEntity<List<Prestamos>> buscarPorISBN(@PathVariable String isbn) {
         return new ResponseEntity<>(bibliotecaService.buscarPorISBN(isbn), HttpStatus.OK);
     }
 
@@ -51,7 +61,7 @@ public class BibliotecaController {
      * @return préstamo guardado con ID autogenerado
      */
     @PostMapping
-    public ResponseEntity<Prestamos> registrarPrestamo(Prestamos prestamo) {
+    public ResponseEntity<Prestamos> registrarPrestamo(@RequestBody Prestamos prestamo) {
         return new ResponseEntity<>(bibliotecaService.registrarPrestamo(prestamo), HttpStatus.CREATED);
     }
 
@@ -62,7 +72,7 @@ public class BibliotecaController {
      * @return ResponseEntity vacío (HTTP 200)
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarPrestamo(Integer id) {
+    public ResponseEntity<Void> eliminarPrestamo(@PathVariable Integer id) {
         bibliotecaService.eliminarPrestamo(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
