@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.alberto.tareaspring"},{"l":"com.alberto.tareaspring.controller"},{"l":"com.alberto.tareaspring.model"},{"l":"com.alberto.tareaspring.repository"},{"l":"com.alberto.tareaspring.service"}];updateSearchResults();
