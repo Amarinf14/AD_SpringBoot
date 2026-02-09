@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class Prestamos {
     @Id
     @Column(name = "IDPrestamo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Valor ID se genera automáticamente
     private Integer idPrestamo;
 
     @Column(name = "DNIUsuario")
