@@ -21,7 +21,7 @@ public interface IBibliotecaRepository extends JpaRepository<Prestamos, Integer>
      * @param dni el DNI del usuario
      * @return lista de préstamos correspondientes al usuario
      */
-    List<Prestamos> buscarPorDNI(String dni);
+    List<Prestamos> findByDNI(String dni);
 
     /**
      * Busca todos los préstamos de un libro específico mediante su ISBN.
@@ -29,5 +29,5 @@ public interface IBibliotecaRepository extends JpaRepository<Prestamos, Integer>
      * @param isbn el ISBN del libro
      * @return lista de préstamos del libro solicitado
      */
-    List<Prestamos> buscarPorISBN(String isbn);
+    List<Prestamos> findByISBN(String isbn);
 }

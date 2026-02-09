@@ -30,7 +30,7 @@ public class BibliotecaService implements IBibliotecaService {
      */
     @Override
     public List<Prestamos> buscarPorDNI(String dni) {
-        return bibliotecaRepository.buscarPorDNI(dni);
+        return bibliotecaRepository.findByDNI(dni);
     }
 
     /**
@@ -42,7 +42,7 @@ public class BibliotecaService implements IBibliotecaService {
      */
     @Override
     public List<Prestamos> buscarPorISBN(String isbn) {
-        return bibliotecaRepository.buscarPorISBN(isbn);
+        return bibliotecaRepository.findByISBN(isbn);
     }
 
     /**
